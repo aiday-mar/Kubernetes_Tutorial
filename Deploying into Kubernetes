@@ -1,0 +1,7 @@
+
+$ minikube start    // start a kubernetes cluster in the online terminal
+$ kubectl version   // command line interface, kubectl
+$ kubectl cluster-info   // to find the cluster details which are used, a minimum of thre nodes are needed
+
+// To do so, you create a Kubernetes Deployment configuration. The Deployment instructs Kubernetes 
+// how to create and update instances of your application.
