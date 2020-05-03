@@ -32,3 +32,27 @@ The network proxy is callde the kube-proxy. The service cluster IPs are found th
 
 # Coding in Kubernetes
 
+Check the minikube version with `minikube version`, and verify the kubectl version with `kubectl version`. We start the work y writing `minikube start --kubernetes-version="v1.8.0" --vm-driver="hyperv" --hyperv-virtual-switch="Minikube"`. You can type the following command to find the pods : `kubectl get pods`.
+
+
+I get into setting up the environment at the beginning :
+
+```
+minikube start 
+// which is starting the Kubernetes 1.8 cluster, this way we are in a local kubernetes environment
+
+kubectl get nodes 
+// will return a list containing the name of the nodes with the status, the role and the version
+```
+
+The following code will deploy a basic hello world appplication, and this will be named as `hw`. The application will be deployed on port 80.
+
+```
+kubectl run hw --image=karthequian/helloworld --port=80
+```
+
+We can visualize the deployments using the followinc command : `kubectl get deployments` . A replica set is created which is named similarly to the deployment, then can be visualized with the following command `kubectl get rs`. When furthermore you type `kubectl get pods` you can visualize all the available pods.
+
+We can expose the service as follows by typing : `kubectl expose deployment hw --type=NodePort` . Following this you may get the services by typing : `kubectl get services`. Bow when typing `minikube service hw` this will open the web-browser and run the command.
+
+When you run `kubectl get all` this will show all the deployed apps. It is also possible to get the corresponding YAML file of the deployment by running the following command : `kubectl get deploy/hw -o yaml`. When you type `vi helloworld-all.yml` this shows the document relative to the deployment and the services of the hello world application. 
