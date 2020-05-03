@@ -1,3 +1,9 @@
 # Kubernetes, Docker Tutorial
 
-This is a repository containing code snippets of tutorials I followed in Kubernetes.
+This is a repository containing code snippets of tutorials I followed while studying kubernetes through the following course : https://www.linkedin.com/learning/learning-kubernetes . First of all, we use the following command in the command prompt in order to set a new alias in the command prompt : `new-alias vi notepad` . A container is defined as : a collection of software processes unified by one namespace, with access to an operating system kernel that is shares with other containers and little to no access between containers. When it concerns Docker, the definition is as follows : it is an instance of a docker image containing the following three things, a docker image, an execution environment, a standard set of instructions.
+
+There are two parts to Docker, there is the Docker store and Docker Engine. The Docker Engine is compromised of the runtime and packaging tools. The Docker Store is an online cloud service where users can store docker images, this is called also docker hub. Containers include the application and all its dependencies. The container is not tied to the platform it only requires docker engine to be installed on the computer. Containers help alleviate platform compatibility issues. There is no more process differences between dev and production environments, scaling applications becomes easier. These containers incorporate a microservice architecture. It helps build continuous integration and deployment pipelines.
+
+Container orchestration solves the problem of deploying multiple containers either by themselves or as part of an application. An orchestrator provides hosts, instantiates containers on a host, restarts failing containers. Kubernetes is an open source platform designed to automate deploying, scaling and operating application containers. Kubernetes can be used to run Docker containers.
+
+One feature of Kubernetes is mutli-host container scheduling. This is done by the kube-scheduler, it assigns pods to nodes at runtime.
