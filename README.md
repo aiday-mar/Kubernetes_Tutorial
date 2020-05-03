@@ -16,10 +16,19 @@ One feature of Kubernetes is mutli-host container scheduling. This is done by th
 
 There is a master node, inside there is an API server, a scheduler linked to the API server which creates pods running on nodes. There is etcd which is a simple distributed key, value store. The command line interface is called kubectl. It has a kubeconfig file. The worker nodes are where the operations operate. There are two processes, kubelete and kube-proxy. The latter is the network proxy on a single node, it performs connections with the TCP, HTTP service. Containers are placed inside a pod. A pod is the smallest unit that can be scheduled into deployment by kubernetes. The kubelet process communicates with the pods, the kube-proxy routes packets to the pods from other services.
 
-**Node**
-
 The node has a kubelet running, container tooling like docker, a kube-proxy process running, and a processor like supervisord. Have at least a three node cluster. Minikube is a lightweight kubernetes implementation that creates a VM on your local machine and deploys a simple cluster containing only one node. In the Pod there is the Docker application container, storage resources, a unique network IP. There are various pod states : pending (accepted by the kubernetes system), running (when a pod has been scheduled on a node), succeeded (meaning that all the containers in the pod have exit with state zero), crashloopbackoff (when a container fails to start for some reason).
 
 In this course the following controllers are covered : ReplicaSets, Deployments, DaemonSets, Jobs and Services.
 
 ReplicaSets ensure that a specified number of replicas for a pod are running at all times. When a pod working on the job has crashed the ReplicaSet controller will start a new pod. The ReplicatSet declared during deployment and this is declared in a YAML file. A deployment controller provides declarative updates for pods and replica sets. The deployment manages a replica set which manages a pod.
+
+DaemonSets ensure that all nodes run a copy of a specific pod. A job is a supervisor process for pods carrying out batch jobs. Jobs are used to run individual processes that run once and complete successfully. Services allow the communication between one set of deployments with another. Generally you use a service to get two pods in the deployment to talk to each other.
+
+There are different kinds of services : internal (IP is only reachable within the cluster), external (endpoint availale through node IP). Labels are key/value pairs that are attached to objects like pods, services and deployments. 
+
+Selectors are of two types : equality based and set based (IN, NOTIN, EXISTS). Namespaces are a way to divide cluster resources between users. The Kubelet on the other hand has several roles : it communicates with the API server to see if pods have been assigned to nodes, it executes pod containers via a container engine. To describe a pod we have a YAML type file called Podspec. The kubelet takes the Podspecs provided by the kube-apiserver and ensures the containers described are running. 
+
+The network proxy is callde the kube-proxy. The service cluster IPs are found through the Docker-link compatible environment. There are three modes of kube-proxy : user space mode, Iptables mode, Ipvs mode. Kube-proxy watched the API server for the addition and removal of services. For each new service the kube-proxy opens a randomly chosen ports on the local node.
+
+# Coding in Kubernetes
+
