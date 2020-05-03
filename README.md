@@ -77,4 +77,12 @@ When you run `kubectl get all` this will show all the deployed apps. It is also 
 kubectl get deploy/hw -o yaml
 ```
 
-When you type `vi helloworld-all.yaml` this shows the document relative to the deployment and the services of the hello world application. 
+When you type `vi helloworld-all.yaml` this shows the document relative to the deployment and the services of the hello world application. We can scale the application as follows :
+
+```
+kubectl scale --replicas=3 deploy/hellowworld-deployment
+```
+So in the above we have then three replicas. This command will also create three pods.
+
+# Kubernetes for production
+
