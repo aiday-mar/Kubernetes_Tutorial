@@ -6,4 +6,16 @@ There are two parts to Docker, there is the Docker store and Docker Engine. The 
 
 Container orchestration solves the problem of deploying multiple containers either by themselves or as part of an application. An orchestrator provides hosts, instantiates containers on a host, restarts failing containers. Kubernetes is an open source platform designed to automate deploying, scaling and operating application containers. Kubernetes can be used to run Docker containers.
 
+During registration, nodes register themselves with the master node. It includes also service discovery, which is the automatic detection of services and endpoints visa DNS. There are TCP, HTTP health checks of the application, which is also monitored by the controller.
+
+The four big players in the orchestration are : Docker Swarm, Kubernetes, Mesos and Rancher. Kubernetes and Mesos are the two platforms most used in big companies.
+
 One feature of Kubernetes is mutli-host container scheduling. This is done by the kube-scheduler, it assigns pods to nodes at runtime.
+
+# Kubernetes Architeture
+
+There is a master node, inside there is an API server, a scheduler linked to the API server which creates pods running on nodes. There is etcd which is a simple distributed key, value store. The command line interface is called kubectl. It has a kubeconfig file. The worker nodes are where the operations operate. There are two processes, kubelete and kube-proxy. The latter is the network proxy on a single node, it performs connections with the TCP, HTTP service. Containers are placed inside a pod. A pod is the smallest unit that can be scheduled into deployment by kubernetes. The kubelet process communicates with the pods, the kube-proxy routes packets to the pods from other services.
+
+**Node**
+
+The node has a kubelet running, container tooling like docker, a kube-proxy process running, and a processor like supervisord. Have at least a three node cluster. Minikube is a lightweight kubernetes implementation that creates a VM on your local machine and deploys a simple cluster containing only one node. In the Pod there is the Docker application container, storage resources, a unique network IP. There are various pod states : pending (accepted by the kubernetes system), 
