@@ -18,4 +18,9 @@ There is a master node, inside there is an API server, a scheduler linked to the
 
 **Node**
 
-The node has a kubelet running, container tooling like docker, a kube-proxy process running, and a processor like supervisord. Have at least a three node cluster. Minikube is a lightweight kubernetes implementation that creates a VM on your local machine and deploys a simple cluster containing only one node. In the Pod there is the Docker application container, storage resources, a unique network IP. There are various pod states : pending (accepted by the kubernetes system), 
+The node has a kubelet running, container tooling like docker, a kube-proxy process running, and a processor like supervisord. Have at least a three node cluster. Minikube is a lightweight kubernetes implementation that creates a VM on your local machine and deploys a simple cluster containing only one node. In the Pod there is the Docker application container, storage resources, a unique network IP. There are various pod states : pending (accepted by the kubernetes system), running (when a pod has been scheduled on a node), succeeded (meaning that all the containers in the pod have exit with state zero), crashloopbackoff (when a container fails to start for some reason).
+
+In this course the following controllers are covered : ReplicaSets, Deployments, DaemonSets, Jobs and Services.
+
+ReplicaSets ensure that a specified number of replicas for a pod are running at all times. When a pod working on the job has crashed the ReplicaSet controller will start a new pod. The ReplicatSet declared during deployment and this is declared in a YAML file.
+
