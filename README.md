@@ -32,7 +32,11 @@ The network proxy is callde the kube-proxy. The service cluster IPs are found th
 
 # Coding in Kubernetes
 
-Check the minikube version with `minikube version`, and verify the kubectl version with `kubectl version`. We start the work y writing `minikube start --kubernetes-version="v1.8.0" --vm-driver="hyperv" --hyperv-virtual-switch="Minikube"`. 
+Check the minikube version with `minikube version`, and verify the kubectl version with `kubectl version`. We start the work by writing :
+
+```
+minikube start --kubernetes-version="v1.8.0" --vm-driver="hyperv" --hyperv-virtual-switch="Minikube"
+```
 
 I get into setting up the environment at the beginning :
 
