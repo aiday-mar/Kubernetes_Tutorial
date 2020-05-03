@@ -22,5 +22,4 @@ The node has a kubelet running, container tooling like docker, a kube-proxy proc
 
 In this course the following controllers are covered : ReplicaSets, Deployments, DaemonSets, Jobs and Services.
 
-ReplicaSets ensure that a specified number of replicas for a pod are running at all times. When a pod working on the job has crashed the ReplicaSet controller will start a new pod. The ReplicatSet declared during deployment and this is declared in a YAML file.
-
+ReplicaSets ensure that a specified number of replicas for a pod are running at all times. When a pod working on the job has crashed the ReplicaSet controller will start a new pod. The ReplicatSet declared during deployment and this is declared in a YAML file. A deployment controller provides declarative updates for pods and replica sets. The deployment manages a replica set which manages a pod.
