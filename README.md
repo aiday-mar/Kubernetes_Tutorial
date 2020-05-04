@@ -1,4 +1,4 @@
-# Kubernetes, Docker Tutorial
+# Kubernetes Tutorial
 
 This is a repository containing code snippets of tutorials I followed while studying kubernetes through the following course : https://www.linkedin.com/learning/learning-kubernetes . First of all, we use the following command in the command prompt in order to set a new alias in the command prompt : `new-alias vi notepad` . A container is defined as : a collection of software processes unified by one namespace, with access to an operating system kernel that is shares with other containers and little to no access between containers. When it concerns Docker, the definition is as follows : it is an instance of a docker image containing the following three things, a docker image, an execution environment, a standard set of instructions.
 
