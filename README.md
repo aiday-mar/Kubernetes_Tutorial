@@ -77,7 +77,7 @@ When you run `kubectl get all` this will show all the deployed apps. It is also 
 kubectl get deploy/hw -o yaml
 ```
 
-When you type `vi helloworld-all.yaml` this shows the document relative to the deployment and the services of the hello world application. We can scale the application as follows :
+When you type `vi helloworld-all.yml` this shows the document relative to the deployment and the services of the hello world application. We can scale the application as follows :
 
 ```
 kubectl scale --replicas=3 deploy/hellowworld-deployment
@@ -91,4 +91,91 @@ We show the labels of the pods :
 ```
 kubectl get pods --show-labels
 ```
-Suppose we want to change the lavel from 
+Suppose we want to add the label of the pod helloworld to helloworldapp
+
+```
+kubectl label po/helloworld app=helloworldapp --overwrite
+```
+To check whether the pod has been labelled we execute
+
+```
+kubectl label pod/helloworld app-
+```
+When you want to create pods you write this in a `file.yml` file and then you can run the following command :
+
+```
+kubectl create -f file.yml
+```
+If we want to find all our pods which are in the production stage :
+
+```
+kubectl get pods --selector env=production --show-labels
+```
+
+Suppose for example you want to find the pods having a release version between 1.0 and 2.0, then you can write :
+
+```
+kubectl get pods -l 'release-version in (1.0, 2.0)'
+```
+Suppose you want to delete the pods having a specific dev-lead (the person who owns the pod) :
+
+```
+kubectl delete pods -l dev-lead={name}
+```
+When there is an error with a pod the `get pods` will return the corresponding pod as beint not completely ready.
+
+When you did changes to your application you can upgrade the image of the application by upgrading the image. Suppose that we want to upgrade the deployment `navbar-deployment` then you can write :
+
+```
+kubectl set image deployment/navbar-deployment helloworld=karthequian/helloworld:blue
+```
+
+In the above `karthequian` is the user and the `blue` at the end specifies that we want a blue navigation bar. Now suppose we want to see the history related to a deployment then we write :
+
+```
+kubectl rollout history deployment/navbar-deployment
+```
+You can also undo changes, for example to undo a deployment you can type :
+
+```
+kubectl rollout undo deployment/navbar-deployment
+```
+
+When we want to run a pod we can write :
+
+```
+kubectl exec -it {pod name} {directory}
+```
+
+# Advanced Kubernetes 
+
+We can visualize the list of addons by typing : `minikube addons list`. You can visualize kubernetes in the dashboard by typing : `minikube dashboard`. We can see all the namespaces by tyling : 
+
+`kubectl get pods --all-namespaces`
+
+We can create a configmap as follows and deploy it. Below the `log_level` is set to debug meaning that the errors at debug time are written to this log
+
+```
+kubectl create configmap logger --from-literal=log_level=debug
+vi reader-configmap-deployment.yaml
+kubectl create -f reader-configmap-deployment.yaml
+kubectl get configmap/logger -o yaml
+```
+You can only find the logs corresponding to pods not deployments.
+
+I can also create secrets through kubernetes by doing so :
+
+```
+kubectl create secret generic {key name} --from-literal=api_key={key}
+```
+
+We can find the yaml file for the key by writing :
+
+```
+kubectl get secret {key name} -o yaml
+```
+You can show the cronjobs by running the following command : `kubectl get cronjobs` . There is also the idea of `stateful sets'.
+
+# Advances Topics
+
+
