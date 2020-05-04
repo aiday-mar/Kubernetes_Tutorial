@@ -174,8 +174,28 @@ We can find the yaml file for the key by writing :
 ```
 kubectl get secret {key name} -o yaml
 ```
-You can show the cronjobs by running the following command : `kubectl get cronjobs` . There is also the idea of `stateful sets'.
+You can show the cronjobs by running the following command : `kubectl get cronjobs` . There is also the idea of `stateful sets`.
 
-# Advances Topics
+# Advanced Topics
 
+You can install Kubernetes using the kubeadm tool. Kops is a library used to automate a cluster provisioned in AWS, it deploys high-availability masters. It generates configuration files for AWS CloudFormation and Terraform configuration. These virtual clusters are called namespaces.
 
+cAdvisor is an open-source resource usage collector that was built for containers. The software auto-discovers all the containers in the given node, collects CPU, memory, network usage statistics.
+
+There are some authentication module : client certs, static token file, OpenID connect, Webhook mode. The first, also called the client certificate, is enabled by passing the 
+
+```
+--client-ca-file=FILENAME 
+```
+
+option to the API server. This file name is the username of the request. The token file example is defined as follows :
+
+```
+--token-auth-file = FILE_WITH_TOKENS
+```
+
+The Webhook token service is a kube-apiserver which calls out to a service defined by you to tell it whether a token is valid or not.
+
+There are some popular authorization modules for entreprises. These include : ABAC (attribute-based access control), RBAC (role-based access control), webhook. Role bindings grant permission to users, they group the users and give them role.
+
+The webhook mode is such that the kube-apiserver calls out to a service defined by you to tell it whether a specific action can be performed - it sends the token and the action the token is trying to perform.
