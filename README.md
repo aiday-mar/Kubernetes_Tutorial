@@ -86,3 +86,9 @@ So in the above we have then three replicas. This command will also create three
 
 # Kubernetes for production
 
+We show the labels of the pods :
+
+```
+kubectl get pods --show-labels
+```
+Suppose we want to change the lavel from 
